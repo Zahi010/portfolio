@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISSION CONTROL: ZAHI-01</title>
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+  <!-- CRT Effect -->
+  <div class="scanlines"></div>
+
+  <!-- Boot Sequence Screen -->
+  <div id="boot-screen">
+    <div class="boot-text">MISSION CONTROL<br>ZAHI-01</div>
+    <div class="boot-subtitle">Software Developer | Data Analyst | Cybersecurity Enthusiast</div>
+    
+    <div class="boot-logs" id="boot-logs">
+      <!-- Generated via JS -->
+    </div>
+
+    <div class="boot-prompt" id="boot-prompt" onclick="if(window.enterMissionControl) window.enterMissionControl();">PRESS SPACE TO ENTER</div>
+  </div>
+
+  <!-- Main HUD -->
+  <div id="hud">
+    <div class="hud-header">
+      <div class="mission-status">
+        <h2>STATUS: EXPLORATION</h2>
+        <p>Accessing Network-on-Chip Hologram</p>
+        <p>Terminals Scanned: <span id="terminals-count">0/7</span></p>
+      </div>
+      <div class="controls-hint">
+        [<span>W A S D</span>] / [<span>ARROWS</span>] Move<br>
+        [<span>SHIFT</span>] Sprint<br>
+        [<span>MOUSE</span>] Look Around<br>
+        [<span>SPACE</span>] Interact
+      </div>
+    </div>
+    
+    <div class="crosshair" id="crosshair">
+      <div class="center-dot"></div>
+    </div>
+
+    <div id="interaction-prompt">PRESS <span>SPACE</span> TO ACCESS</div>
+  </div>
+
+  <!-- 3D Environment -->
+  <div id="canvas-container"></div>
+
+  <!-- 3D Markers Container -->
+  <div id="markers-container"></div>
+
+  <!-- Terminal Overlay Container -->
+  <div id="terminal-overlay">
+    <div class="terminal-container">
+      <div class="terminal-header">
+        <div class="terminal-title" id="terminal-title">DATA TERMINAL</div>
+        <button class="close-btn" id="close-terminal">CLOSE [ESC]</button>
+      </div>
+      
+      <div class="terminal-body">
+        
+        <!-- TERMINAL 1: EDUCATION -->
+        <div id="content-education" class="hidden-content">
+          <div class="data-row">
+            <div class="data-label">INSTITUTION</div>
+            <div class="data-value">AWH Engineering College</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">DEGREE</div>
+            <div class="data-value">B.Tech Computer Science</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">METRIC</div>
+            <div class="data-value">CGPA: 6.5</div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">STATUS</div>
+            <div class="data-value" style="color: var(--holo-cyan);">VALIDATED_AND_ARCHIVED</div>
+          </div>
+        </div>
+
+        <!-- TERMINAL 2: SKILLS -->
+        <div id="content-skills" class="hidden-content">
+          <h3 style="color: var(--text-main); margin-bottom: 20px;">SYSTEM CAPABILITIES LOADED:</h3>
+          <div class="skill-grid">
+            <div class="skill-item"><span class="skill-name">Python</span></div>
+            <div class="skill-item"><span class="skill-name">Java</span></div>
+            <div class="skill-item"><span class="skill-name">C</span></div>
+            <div class="skill-item"><span class="skill-name">SQL</span></div>
+            <div class="skill-item"><span class="skill-name">HTML / CSS</span></div>
+            <div class="skill-item"><span class="skill-name">REST APIs</span></div>
+            <div class="skill-item"><span class="skill-name">Flask / Django</span></div>
+            <div class="skill-item"><span class="skill-name">Machine Learning</span></div>
+            <div class="skill-item"><span class="skill-name">Data Analysis</span></div>
+            <div class="skill-item"><span class="skill-name">Pandas / NumPy</span></div>
+            <div class="skill-item"><span class="skill-name">MySQL</span></div>
+            <div class="skill-item"><span class="skill-name">Git / GitHub</span></div>
+            <div class="skill-item"><span class="skill-name">Excel</span></div>
+          </div>
+        </div>
+
+        <!-- TERMINAL 3: PROJECTS -->
+        <div id="content-projects" class="hidden-content">
+          <h2 class="section-title">PROJECT DATABANKS</h2>
+          
+          <div class="project-card">
+            <div class="project-title">
+              <span>Anti-Spoofing System using Python</span>
+              <span class="status-badge">DEPLOYED</span>
+            </div>
+            <p>
+              Implemented image-based spoof detection using Python and OpenCV. Enhanced authentication security by detecting spoofing attempts through facial analysis and liveness indicators.
+            </p>
+          </div>
+        </div>
+
+        <!-- TERMINAL 4: EXPERIENCE -->
+        <div id="content-experience" class="hidden-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">LOG_ENTRY_001</div>
+              <div class="timeline-title">AI Intern</div>
+              <div class="timeline-company">Corizo</div>
+              <p style="color: var(--text-main); line-height: 1.5;">
+                Engaged in applied artificial intelligence workflows. Processed datasets, tuned machine learning models, and evaluated algorithmic performance metrics.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">LOG_ENTRY_002</div>
+              <div class="timeline-title">Cybersecurity Intern</div>
+              <div class="timeline-company">Academor</div>
+              <p style="color: var(--text-main); line-height: 1.5;">
+                Studied offensive and defensive security architectures. Assisted in vulnerability assessments and threat modeling methodologies.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERMINAL 5: CONTACT -->
+        <div id="content-contact" class="hidden-content">
+          <h3 style="color: var(--holo-cyan); margin-bottom: 30px; text-align: center; font-family: var(--font-display);">COMMUNICATION UPLINK</h3>
+          <div class="contact-grid">
+            <a href="mailto:zahi@example.com" class="contact-btn">EMAIL PROTOCOL</a>
+            <a href="https://linkedin.com" target="_blank" class="contact-btn">LINKEDIN RELAY</a>
+            <a href="https://github.com" target="_blank" class="contact-btn">GITHUB REPO</a>
+            <a href="#" class="contact-btn">DOWNLOAD DOSSIER</a>
+          </div>
+        </div>
+
+        <!-- TERMINAL: ANOMALY (BHR) -->
+        <div id="content-anomaly" class="hidden-content">
+          <h3 style="color: var(--holo-alert); margin-bottom: 20px;">[WARNING] CRITICAL SYSTEM ANOMALY ISOLATED</h3>
+          <div class="project-card" style="border-color: var(--holo-alert); background: rgba(255,0,85,0.05); box-shadow: inset 0 0 20px rgba(255,0,85,0.1);">
+            <div class="project-title">
+              <span style="color: var(--holo-alert);">Detection and Mitigation of Black Hole Router Attack on NoC</span>
+              <span class="status-badge" style="background: rgba(255,0,85,0.2); border-color: var(--holo-alert); color: var(--holo-alert);">THREAT NEUTRALIZED</span>
+            </div>
+            <p style="color: var(--text-main); line-height: 1.6; margin-bottom: 10px;">
+              Analyzed simulated Network-on-Chip topologies where malicious routers silently dropped data packets. Developed routing algorithms to detect anomalies and bypass compromised nodes, ensuring data integrity.
+            </p>
+          </div>
+        </div>
+
+        <!-- TERMINAL: ABOUT (CENTRAL CORE) -->
+        <div id="content-about" class="hidden-content">
+          <h2 class="section-title">SYSTEM ARCHITECT</h2>
+          <div style="display: flex; gap: 20px; align-items: flex-start; margin-top: 20px;">
+            <div style="flex: 1;">
+              <h3 style="color: var(--holo-cyan); margin-bottom: 10px; font-size: 1.5rem;">Zahi Ahmed Vakayil</h3>
+              <p style="color: var(--holo-blue); margin-bottom: 15px; font-weight: bold;">B.Tech Computer Science Engineering</p>
+              <p style="color: var(--text-main); line-height: 1.6; margin-bottom: 20px;">
+                Final-year CSE student passionate about software development, with hands-on exposure to Cybersecurity and Artificial Intelligence. Proficient in Python, REST APIs, and building secure data-driven applications.
+              </p>
+              
+              <div style="margin-bottom: 15px;">
+                <h4 style="color: var(--holo-cyan); margin-bottom: 5px;">[EXPERIENCE LOGS]</h4>
+                <div style="color: var(--text-main); margin-bottom: 5px;">> <span style="color: #fff;">AI Intern</span> @ Corizo (Machine Learning & Data Processing)</div>
+                <div style="color: var(--text-main);">> <span style="color: #fff;">Cybersecurity Intern</span> @ Academor (Threat Modeling & Vulnerability Analysis)</div>
+              </div>
+
+              <div>
+                <h4 style="color: var(--holo-cyan); margin-bottom: 5px;">[CORE CAPABILITIES]</h4>
+                <div style="color: var(--text-main); line-height: 1.5;">
+                  <span style="color: var(--holo-blue);">Languages:</span> Python, Java, C, SQL<br>
+                  <span style="color: var(--holo-blue);">Backend/Web:</span> Django, Flask, REST APIs<br>
+                  <span style="color: var(--holo-blue);">Data Science:</span> Machine Learning, Pandas, NumPy, Power BI
+                </div>
+              </div>
+            </div>
+            <div style="width: 150px; height: 150px; border: 2px solid var(--holo-cyan); box-shadow: inset 0 0 20px var(--holo-cyan); display: flex; align-items: center; justify-content: center; background: rgba(0,243,255,0.1);">
+              <span style="font-family: var(--font-display); color: var(--holo-cyan); font-size: 4rem;">ZA</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission Complete Sequence -->
+  <div id="mission-complete">
+    <div class="complete-title">MISSION COMPLETE</div>
+    <div class="complete-subtitle">THANK YOU FOR VISITING</div>
+    <div class="complete-roles">ZAHI AHMED VAKAYIL | Software Developer & Data Analyst</div>
+    <button class="final-contact-btn" onclick="window.location.href='mailto:zahi@example.com'">INITIATE CONTACT</button>
+  </div>
+
+  <!-- Cinematic Eye Lids -->
+  <div id="eye-lids" style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:9000; opacity:0; pointer-events:none; transition: opacity 0.1s;"></div>
+
+  <!-- Libraries -->
+  <!-- GSAP for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Three.js for 3D environment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GLTFLoader for loading 3D models -->
+  <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  
+  <!-- Post Processing -->
+  <script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/shaders/RGBShiftShader.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/shaders/DigitalGlitch.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/GlitchPass.js"></script>
+  
+  <!-- Custom App Logic -->
+  <script src="app_v46.js"></script>
+</body>
+</html>
